@@ -5,6 +5,7 @@
 Requires the ``clint`` python library to be installed to use the ``pychievements.cli`` commands.
 """
 
+import sys
 import cmd
 from pychievements import tracker, Achievement, icons
 from pychievements.signals import receiver, goal_achieved, highest_level_achieved
@@ -19,10 +20,14 @@ class TheLister(Achievement):
     category = 'cli'
     keyworkds = ('cli', 'commands', 'ls')
     goals = (
-        (5, "Getting Interested", icons.star, "Used `ls` 5 times"),
-        (10, "Peruser of lists", icons.star, "Used `ls` 10 times"),
-        (15, "The listing master", icons.star, "Used `ls` 15 times"),
-        (20, "All your lists are belong to us!", icons.star, "Used `ls` 20 times"),
+        {'level': 5, 'name': 'Getting Interested',
+         'icon': icons.star, 'description': 'Used `ls` 5 times'},
+        {'level': 10, 'name': 'Peruser of lists',
+         'icon': icons.star, 'description': 'Used `ls` 10 times'},
+        {'level': 15, 'name': 'The listing master', 'icon': icons.star,
+         'description': 'Used `ls` 15 times'},
+        {'level': 20, 'name': 'All your lists are belong to us!',
+         'icon': icons.star, 'description': 'Used `ls` 20 times'},
     )
 # Achievements must be registered with the tracker before they can be used
 tracker.register(TheLister)
@@ -36,13 +41,18 @@ class TheCreator(Achievement):
     category = 'cli'
     keyworkds = ('cli', 'commands', 'create')
     goals = (
-        (1, "My First Creation", icons.unicodeCheck, "and it's so beautiful...."),
-        (5, "Green thumb", icons.unicodeCheckBox, "You've created at least 5 objects!"),
-        (10, "Clever thinker", icons.star, "More than 10 new creations are all because of you."),
-        (17, "Almost an adult", icons.star, "Just about 18."),
-        (15, "True Inspiration", icons.star, "Or have you stolen your ideas for "
-                                             "these 15 items? Hmmm?"),
-        (20, "Divine Creator", icons.star, "All the world bows to your divine inspiration."),
+        {'level': 1, 'name': 'My First Creation',
+         'icon': icons.unicodeCheck, 'description': 'and it\'s so beautiful....'},
+        {'level': 5, 'name': 'Green thumb',
+         'icon': icons.unicodeCheckBox, 'description': 'You\'ve created at least 5 objects!'},
+        {'level': 10, 'name': 'Clever thinker',
+         'icon': icons.star, 'description': 'More than 10 new creations are all because of you.'},
+        {'level': 17, 'name': 'Almost an adult',
+         'icon': icons.star, 'description': 'Just about 18.'},
+        {'level': 15, 'name': 'True Inspiration',
+         'icon': icons.star, 'description': 'Or did you steal your ideas for these 15 items? Hmm?'},
+        {'level': 20, 'name': 'Divine Creator',
+         'icon': icons.star, 'description': 'All the world bows to your divine inspiration.'},
     )
 
     def evaluate(self, old_objects, new_objects, *args, **kwargs):
@@ -104,14 +114,27 @@ class MyCLIProgram(cmd.Cmd):
         # Have TheCreator update our level based on the number of objects we just created
         tracker.evaluate('userid', TheCreator, old, len(self._objects))
 
+    def do_remove(self, arg):
+        """ Remove objects """
+        for o in arg.split():
+            if o in self._objects:
+                self._objects.remove(o)
+
     def do_achievements(self, arg):
         """ List achievements. Can specify 'all' to see all achievements, or 'current' to see
         achievements currently working towards. Shows achieved achievements by default
         """
         showall = arg.lower() == "all"
         current = arg.lower() == "current"
+        print("")
         print_goals_for_tracked('userid', achieved=True, unachieved=showall, only_current=current,
                                 level=True)
+
+    def do_exit(self, arg):
+        sys.exit(0)
+
+    def do_EOF(self, arg):
+        sys.exit(0)
 
 if __name__ == "__main__":
     MyCLIProgram().cmdloop()

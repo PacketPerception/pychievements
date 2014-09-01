@@ -34,9 +34,9 @@ A simple achievement. ::
         category = "achievements"
         keywords = ("my", "achievement")
         goals = (
-            {"level": 10, "name": "Level 1", "icon": icons.star, "description": "Level One" },
-            {"level": 20, "name": "Level 2", "icon": icons.star, "description": "Level Two" },
-            {"level": 30, "name": "Level 3", "icon": icons.star, "description": "Level Three" },
+            {"level": 10, "name": "Level 1", "icon": icons.star, "description": "Level One"},
+            {"level": 20, "name": "Level 2", "icon": icons.star, "description": "Level Two"},
+            {"level": 30, "name": "Level 3", "icon": icons.star, "description": "Level Three"},
         )
 
 
