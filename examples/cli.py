@@ -16,9 +16,9 @@ class TheLister(Achievement):
     """
     Create a simple Achievement with 4 goals that can be reached
     """
-    name = "The Lister"
+    name = 'The Lister'
     category = 'cli'
-    keyworkds = ('cli', 'commands', 'ls')
+    keywords = ('cli', 'commands', 'ls')
     goals = (
         {'level': 5, 'name': 'Getting Interested',
          'icon': icons.star, 'description': 'Used `ls` 5 times'},
@@ -37,9 +37,9 @@ class TheCreator(Achievement):
     """
     Achievements can have as many goals as they like
     """
-    name = "The Creator"
+    name = 'The Creator'
     category = 'cli'
-    keyworkds = ('cli', 'commands', 'create')
+    keywords = ('cli', 'commands', 'create', 'modifiers')
     goals = (
         {'level': 1, 'name': 'My First Creation',
          'icon': icons.unicodeCheck, 'description': 'and it\'s so beautiful....'},
@@ -85,7 +85,7 @@ def check_if_all_completed(tracked_id, **kwargs):
     for a in tracker.achievements():
         unachieved += tracker.unachieved(tracked_id, a)
     if not unachieved:
-        print("\n\nYou've achieved the highest level of every achievement possible! Congrats!")
+        print('\n\nYou\'ve achieved the highest level of every achievement possible! Congrats!')
 
 
 class MyCLIProgram(cmd.Cmd):
@@ -93,8 +93,8 @@ class MyCLIProgram(cmd.Cmd):
     Simple command shell that lets us create objects and then list them. We're not performing
     multi-user tracking in our shell, so the tracked_id for all commands will just be 'userid'.
     """
-    intro = "The Achievement Oriented Command Line! Use ctrl+c to exit"
-    prompt = "(do stuff) "
+    intro = 'The Achievement Oriented Command Line! Use ctrl+c to exit'
+    prompt = '(do stuff) '
 
     def __init__(self, *args, **kwargs):
         cmd.Cmd.__init__(self, *args, **kwargs)
@@ -104,7 +104,7 @@ class MyCLIProgram(cmd.Cmd):
         """ List created objects """
         for _ in self._objects:
             print(_)
-        # every time we run "ls", increment the level for TheListener
+        # every time we run 'ls', increment the level for TheListener
         tracker.increment('userid', TheLister)
 
     def do_create(self, arg):
@@ -124,9 +124,9 @@ class MyCLIProgram(cmd.Cmd):
         """ List achievements. Can specify 'all' to see all achievements, or 'current' to see
         achievements currently working towards. Shows achieved achievements by default
         """
-        showall = arg.lower() == "all"
-        current = arg.lower() == "current"
-        print("")
+        showall = arg.lower() == 'all'
+        current = arg.lower() == 'current'
+        print('')
         print_goals_for_tracked('userid', achieved=True, unachieved=showall, only_current=current,
                                 level=True)
 
@@ -136,5 +136,5 @@ class MyCLIProgram(cmd.Cmd):
     def do_EOF(self, arg):
         sys.exit(0)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     MyCLIProgram().cmdloop()

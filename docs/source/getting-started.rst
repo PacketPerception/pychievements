@@ -104,5 +104,8 @@ must define what to display for when the goal has been achieved (``achieved``) o
 Examples
 --------
 
-The easiest way to get started to check out the examples in the *examples* folder in the
-Pychievements repository. Then check out the :doc:`reference` for more information.
+The easiest way to get started to check out the examples in the `examples`_ folder in the
+`the repository`_. Then check out the :doc:`reference` for more information.
+
+.. _examples: https://github.com/PacketPerception/pychievements/tree/master/examples
+.. _`the repository`: https://github.com/PacketPerception/pychievements

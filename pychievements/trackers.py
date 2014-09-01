@@ -39,7 +39,7 @@ class AchievementTracker(object):
         Configures a new backend for storing achievement data.
         """
         if not isinstance(backend, AchievementBackend):
-            raise ValueError("Backend must be an instance of an AchievementBackend")
+            raise ValueError('Backend must be an instance of an AchievementBackend')
         self._backend = backend
 
     def register(self, achievement_or_iterable, **options):
@@ -50,8 +50,8 @@ class AchievementTracker(object):
             achievement_or_iterable = [achievement_or_iterable]
         for achievement in achievement_or_iterable:
             if not achievement.category:
-                raise ValueError("Achievements must specify a category, could not register "
-                                 "%s" % achievement.__name__)
+                raise ValueError('Achievements must specify a category, could not register '
+                                 '%s' % achievement.__name__)
             if achievement in self._registry:
                 raise AlreadyRegistered('The achievement %s is already '
                                         'registered' % achievement.__name__)
@@ -116,6 +116,11 @@ class AchievementTracker(object):
         if a:
             return self._backend.achievement_for_id(tracked_id, a[0])
         raise NotRegistered('The achievement %s is not registered with this tracker' % achievement)
+
+    def achievements_for_id(self, tracked_id, category=None, keywords=[]):
+        """ Returns all of the achievements for tracked_id that match the given category and
+        keywords """
+        return self._backend.achievements_for_id(tracked_id, self.achievements(category, keywords))
 
     def _check_signals(self, tracked_id, achievement, old_level, old_achieved):
         cur_level = achievement.current[0]
@@ -203,3 +208,11 @@ class AchievementTracker(object):
         achievement.set_level(level)
         self._backend.set_level_for_id(tracked_id, achievement.__class__, achievement.current[0])
         self._check_signals(tracked_id, achievement, cur_level, achieved)
+
+    def get_tracked_ids(self):
+        """ Returns all tracked ids """
+        return self._backend.get_tracked_ids()
+
+    def remove_id(self, tracked_id):
+        """ Remove all tracked information for tracke_id """
+        self._backend.remove_id(tracked_id)

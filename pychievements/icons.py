@@ -28,10 +28,10 @@ class Icon(object):
 
     .. code-block:: python
 
-        star = Icon(unachieved=" ☆ ", achieved=" ★ ")
+        star = Icon(unachieved=' No ', achieved=' Yes ')
 
     """
-    def __init__(self, unachieved="", achieved=""):
+    def __init__(self, unachieved='', achieved=''):
         self._unachieved = unachieved
         self._achieved = achieved
 
@@ -46,45 +46,31 @@ class Icon(object):
 
 ############################################################################################
 # Some built-in ASCII icons
-unicodeCheckBox = Icon("\n\n    ☐  \n", "\n\n    ☑  \n")
-unicodeCheck = Icon("\n\n    ✗  \n", "\n\n    ✓  \n")
+unicodeCheckBox = Icon('\n\n    ☐  \n', '\n\n    ☑  \n')
+unicodeCheck = Icon('\n\n    ✗  \n', '\n\n    ✓  \n')
 
 ############################################################################################
 # Some built-in ASCII Art icons
-star = Icon(colored.white("""               ..
-               88.
-              .88.
-             .8  8.
-             .8  8.
-            .8    8.
- ............8    8............
-  D888888888       88888888888
-    .88                  88~.
-     ..88              88..
-        .88          88.
-          88        88
-         ,88        88D
-         88   8888   88.
-        D8  88.  .88  8D
-       .8  8.      .8  8.
-       D 8.          .8 8
-      .D.              .D.
-"""), colored.yellow("""               ..
-               88.
-              .88.
-             .8888.
-             .8888.
-            .888888.
- ............888888............
-  D888888888888888888888888888
-    .8888888888888888888888~.
-     ..888888888888888888..
-        .88888888888888.
-          888888888888
-         ,888888888888D
-         88888888888888.
-        D88888.  .88888D
-       .8888.      .8888.
-       D88.          .888
-      .D.              .D.
+star = Icon(colored.white("""           ..
+          .88.
+         .8  8.
+ ........8    8........
+  D88888       8888888
+    .88          88~.
+     ,88        88D
+     88  88..88  88.
+    D  88.    .88  D
+   D 8.          .8 8
+  .D.              .D.
+"""), colored.yellow("""           ..
+          .88.
+         .8888.
+ ........888888........
+  D8888888888888888888
+    .88888888888888~.
+     ,888888888888D
+     888888..888888.
+    D8888.    .8888D
+   D88.          .888
+  .D.              .D.
 """))

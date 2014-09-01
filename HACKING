@@ -1,5 +1,5 @@
-Where possible, please follow PEP8 with regard to coding style. Sometimes the line 
-length restriction is too hard to follow, so don't bend over backwards there.
+Where possible, please follow PEP8 with regard to coding style, except using a line width of 100 
+instead of 80.
 
 Triple-quotes should always be """, single quotes are ' unless using "
 would result in less escaping within the string.

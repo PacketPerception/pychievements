@@ -2,7 +2,7 @@ class Achievement(object):
     """
     Base Achievement class.
 
-    An achievement primarily consists of "goals", being levels that can be reached. Instances of
+    An achievement primarily consists of 'goals', being levels that can be reached. Instances of
     Achievements are used to track progress, and the current level for individual IDs. For this,
     an Achievement implements a number of fhunctions to interact with the current level.
     Achievements can also have a ``category`` (string) and ``keywords`` (tuple of strings) that can
@@ -13,16 +13,16 @@ class Achievement(object):
     .. code-block:: python
 
         goals = (
-            {"level": 10, "name": 'Level 1', "icon": icons.star, "description": "Level One" },
-            {"level": 20, "name": 'Level 2', "icon": icons.star, "description": "Level Two" },
-            {"level": 30, "name": 'Level 3', "icon": icons.star, "description": "Level Three" },
+            {'level': 10, 'name': 'Level 1', 'icon': icons.star, 'description': 'Level One'},
+            {'level': 20, 'name': 'Level 2', 'icon': icons.star, 'description': 'Level Two'},
+            {'level': 30, 'name': 'Level 3', 'icon': icons.star, 'description': 'Level Three'},
         )
 
 
     Arguments:
 
         level
-            A positive integer that must be reached (greater than or equal) to be considered "met"
+            A positive integer that must be reached (greater than or equal) to be considered 'met'
 
         name
             A short name for the level
@@ -53,8 +53,8 @@ class Achievement(object):
     An Achievement can be initialized with a ``current`` level, for example when restoring for a
     saved state.
     """
-    name = "Achievement"
-    category = "achievements"
+    name = 'Achievement'
+    category = 'achievements'
     keywords = tuple()
     goals = tuple()
 
@@ -63,8 +63,8 @@ class Achievement(object):
         self.goals = sorted(self.goals, key=lambda g: g['level'])  # make sure our goals are sorted
 
     def __repr__(self):
-        return "<{0} category:'{1}' keywords:{2} {3}>".format(self.name, self.category,
-                                                              self.keywords, self._current)
+        return '<{0} category:\'{1}\' keywords:{2} {3}>'.format(self.name, self.category,
+                                                                self.keywords, self._current)
 
     @property
     def current(self):

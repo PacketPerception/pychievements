@@ -12,7 +12,7 @@ See the examples_ to get a good feel for what Pychievements offers.  Source can 
 .. _github: https://github.com/PacketPerception/pychievements
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     getting-started
     reference
