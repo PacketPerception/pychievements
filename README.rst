@@ -111,7 +111,7 @@ Roadmap
 - Documentation
 
 
-.. |docs| image:: https://readthedocs.org/projects/pychievements/?badge=latest
+.. |docs| image:: https://readthedocs.org/projects/pychievements/badge/?version=latest
     :alt: Documentation Status
     :scale: 100%
     :target: http://pychievements.readthedocs.org/en/latest/
