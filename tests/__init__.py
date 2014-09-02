@@ -1,5 +1,4 @@
 import os
-import faker
 import random
 import unittest
 import tempfile
@@ -10,20 +9,19 @@ from pychievements.trackers import AchievementTracker, NotRegistered, AlreadyReg
 from pychievements.backends import SQLiteAchievementBackend
 from pychievements.signals import receiver, goal_achieved, level_increased, highest_level_achieved
 
-fake = faker.Factory.create()
-
 
 def AchievementFactory(name):
-    attrs = {'name': fake.word(), 'category': random.choice(CATEGORIES),
+    attrs = {'name': name, 'category': random.choice(CATEGORIES),
              'keywords': random.sample(KEYWORDS, random.randrange(1, len(KEYWORDS))),
              'goals': tuple({'level': _, 'name': str(_), 'icon': icons.star, 'description': str(_)}
                             for _ in range(15, random.randrange(25, 50, 5), 5))}
     return type(name, (Achievement,), attrs)
 
 
-CATEGORIES = fake.pylist(6, True, 'word')
-KEYWORDS = fake.pylist(10, True, 'word')
-TRACKED_IDS = fake.pylist(5, True, 'word', 'int')
+CATEGORIES = ['itaque', 'sapiente', 'consectetur', 'voluptate', 'iusto', 'sint']
+KEYWORDS = ['qui', 'officiis', 'expedita', 'saepe', 'placeat', 'perferendis', 'vitae',
+            'ullam', 'aut', 'aut', 'enim', 'sint']
+TRACKED_IDS = [3324, 608, 'deserunt', 'omnis', 'excepturi', 'dolores', 'vero']
 ACHIEVEMENTS = [AchievementFactory("Achieve%d" % _) for _ in range(0, random.randrange(5, 10))]
 
 
@@ -96,7 +94,7 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(self.tracker.evaluate(tid, random.choice(ACHIEVEMENTS)), [])
 
     def test_set_level(self):
-        tid = fake.word()
+        tid = 'randomeID'
         achiev = random.choice(ACHIEVEMENTS)
         self.tracker.set_level(tid, achiev, 100)
         self.assertEqual(self.tracker.current(tid, achiev)[0], 100)
@@ -145,7 +143,7 @@ class SQLiteBackendTests(unittest.TestCase):
         self.assertRaises(NotRegistered, self.tracker.achievement_for_id, tid, 'NotRegistered')
 
     def test_set_level(self):
-        tid = fake.word()
+        tid = 'randomID'
         achiev = random.choice(ACHIEVEMENTS)
         self.tracker.set_level(tid, achiev, 100)
         self.assertEqual(self.tracker.current(tid, achiev)[0], 100)
@@ -232,7 +230,7 @@ class IconsTests(unittest.TestCase):
         import sys
         del sys.modules['pychievements.icons']
         textui = sys.modules['clint.textui']
-        sys.modules['clint.textui'] = sys.modules['faker']
+        sys.modules['clint.textui'] = sys.modules['nose']
         import pychievements.icons
         c = pychievements.icons.ColorCatcher()
         self.assertEqual(c.red('test'), 'test')

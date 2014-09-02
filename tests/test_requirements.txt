@@ -1,5 +1,4 @@
 # These requirements are for running pychievements tests
-faker
 clint
 coverage
 nose
