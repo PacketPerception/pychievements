@@ -76,7 +76,7 @@ class TrackerTests(unittest.TestCase):
     def test_achievement_for_id(self):
         tid = random.choice(TRACKED_IDS)
         achiev = self.tracker.achievement_for_id(tid, random.choice(ACHIEVEMENTS))
-        # self.assertEqual(self.tracker.achievement_for_id(tid, achiev), achiev)
+        repr(achiev)
         self.assertEqual(self.tracker.current(tid, achiev), achiev.current)
 
         self.assertRaises(NotRegistered, self.tracker.achievement_for_id, tid, 'NotRegistered')
@@ -160,6 +160,11 @@ class SQLiteBackendTests(unittest.TestCase):
 
 @receiver([goal_achieved, level_increased, highest_level_achieved])
 def recv(*args, **kwargs):
+    pass
+
+
+@receiver(goal_achieved)
+def recv2(*args, **kwargs):
     pass
 
 
@@ -253,9 +258,11 @@ class CLITests(unittest.TestCase):
         cli.print_goals(ACHIEVEMENTS[0])
 
     def test_print_goals_for_tracked(self):
+        cli.print_goals_for_tracked(random.choice(TRACKED_IDS), unachieved=True)
+        cli.print_goals_for_tracked(random.choice(TRACKED_IDS), ACHIEVEMENTS[0], unachieved=True,
+                                    tracker=self.tracker)
         cli.print_goals_for_tracked(random.choice(TRACKED_IDS), ACHIEVEMENTS, unachieved=True,
                                     tracker=self.tracker)
-
         cli.print_goals_for_tracked(random.choice(TRACKED_IDS), only_current=True,
                                     tracker=self.tracker)
 
