@@ -9,12 +9,13 @@ for CLI applications.
 
 """
 
+
+class ColorCatcher(object):
+    def __getattr__(self, name):
+        return lambda s: s
 try:
     from clint.textui import colored
 except ImportError:
-    class ColorCatcher(object):
-        def __getattr__(self, name):
-            return lambda s: s
     colored = ColorCatcher()
 
 

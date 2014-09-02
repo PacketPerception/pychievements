@@ -46,7 +46,7 @@ class AchievementTracker(object):
         """
         Registers the given achievement(s) to be tracked.
         """
-        if issubclass(achievement_or_iterable, Achievement):
+        if _isclass(achievement_or_iterable) and issubclass(achievement_or_iterable, Achievement):
             achievement_or_iterable = [achievement_or_iterable]
         for achievement in achievement_or_iterable:
             if not achievement.category:
@@ -58,18 +58,18 @@ class AchievementTracker(object):
             if achievement is not Achievement:
                 self._registry.append(achievement)
 
-    def unregister(self, model_or_iterable):
+    def unregister(self, achievement_or_iterable):
         """
         Un-registers the given achievement(s).
 
         If an achievement isn't already registered, this will raise NotRegistered.
         """
-        if isinstance(model_or_iterable, Achievement):
-            achievements = [model_or_iterable]
-        for achievement in achievements:
+        if _isclass(achievement_or_iterable) and issubclass(achievement_or_iterable, Achievement):
+            achievement_or_iterable = [achievement_or_iterable]
+        for achievement in achievement_or_iterable:
             if achievement not in self._registry:
                 raise NotRegistered('The achievement %s is not registered' % achievement.__name__)
-            del self._registry[achievement]
+            self._registry.remove(achievement)
 
     def is_registered(self, achievement):
         """

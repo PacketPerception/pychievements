@@ -1,6 +1,7 @@
-from . import tracker as defaulttracker
+from . import tracker as _defaulttracker
 from .achievements import Achievement
-from itertools import izip_longest
+from itertools import izip_longest as _izip_longest
+from inspect import isclass as _isclass
 
 
 def print_goal(goal, achieved=False, level=None, indent=2):
@@ -25,7 +26,7 @@ def print_goal(goal, achieved=False, level=None, indent=2):
         maxitw = max([len(_) for _ in icon])
         icon.append(("%d/%d" % (level, goal['level'])).center(maxitw))
     with _indent(indent):
-        for i, d in izip_longest(icon, desc):
+        for i, d in _izip_longest(icon, desc):
             puts("{1:{0}}    {2}".format(maxiw, i if i is not None else "",
                                          d.strip() if d is not None else ""))
 
@@ -37,9 +38,7 @@ def print_goals(achievement_or_iter, indent=2):
     from clint.textui import puts
     from clint.textui.cols import console_width
     from clint.textui import indent as _indent
-    if (isinstance(achievement_or_iter, Achievement) or
-       not hasattr(achievement_or_iter, '__class__') and
-       issubclass(achievement_or_iter, Achievement)):
+    if _isclass(achievement_or_iter) and issubclass(achievement_or_iter, Achievement):
         achievement_or_iter = [achievement_or_iter]
 
     for achievement in achievement_or_iter:
@@ -90,13 +89,11 @@ def print_goals_for_tracked(tracked_id, achievement_or_iter=None, achieved=True,
     from clint.textui import indent as _indent
     from clint.textui.cols import console_width
     if tracker is None:
-        tracker = defaulttracker
+        tracker = _defaulttracker
 
     if achievement_or_iter is None:
         achievement_or_iter = tracker.achievements()
-    elif (isinstance(achievement_or_iter, Achievement) or
-          not hasattr(achievement_or_iter, '__class__') and
-          issubclass(achievement_or_iter, Achievement)):
+    elif _isclass(achievement_or_iter) and issubclass(achievement_or_iter, Achievement):
         achievement_or_iter = [achievement_or_iter]
 
     for achievement in achievement_or_iter:

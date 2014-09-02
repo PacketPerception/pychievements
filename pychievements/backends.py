@@ -40,6 +40,7 @@ class AchievementBackend(object):
         r = []
         for a in achievements:
             r.append(self.achievement_for_id(tracked_id, a))
+        return r
 
     def set_level_for_id(self, tracked_id, achievement, level):
         """ Set the ``level`` for an ``Achievement`` for the given ``tracked_id`` """
@@ -85,11 +86,11 @@ class SQLiteAchievementBackend(AchievementBackend):
         with self.conn:
             c = self.conn.cursor()
             c.execute('select level from pychievements where achievement=? and tracked_id=?',
-                      (achievement.__name__, tracked_id))
+                      (achievement.__name__, str(tracked_id)))
             rows = c.fetchall()
             if not rows:
                 c.execute('insert into pychievements values(?, ?, ?)',
-                          (tracked_id, achievement.__name__, 0))
+                          (str(tracked_id), achievement.__name__, 0))
                 return achievement(current=0)
             return achievement(current=rows[0][0])
 
@@ -100,7 +101,7 @@ class SQLiteAchievementBackend(AchievementBackend):
             c = self.conn.cursor()
             c.execute('select achievement, level from pychievements where tracked_id=? and '
                       'achievement in (%s)' % ','.join('?'*len(achievements.keys())),
-                      [tracked_id] + achievements.keys())
+                      [str(tracked_id)] + achievements.keys())
             rows = c.fetchall()
             for i, _ in enumerate(rows):
                 r.append(achievements[_[0]](current=_[1]))
@@ -110,7 +111,7 @@ class SQLiteAchievementBackend(AchievementBackend):
         with self.conn:
             c = self.conn.cursor()
             c.execute('update pychievements set level=? where achievement=? and tracked_id=?',
-                      (level, achievement.__name__, tracked_id))
+                      (level, achievement.__name__, str(tracked_id)))
 
     def get_tracked_ids(self):
         with self.conn:
@@ -122,4 +123,4 @@ class SQLiteAchievementBackend(AchievementBackend):
     def remove_id(self, tracked_id):
         with self.conn:
             c = self.conn.cursor()
-            c.execute('delete from pychievements where tracked_id=?', str(tracked_id))
+            c.execute('delete from pychievements where tracked_id=?', (str(tracked_id),))
