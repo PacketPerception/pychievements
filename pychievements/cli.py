@@ -31,7 +31,7 @@ def print_goal(goal, achieved=False, level=None, indent=2):
         icon.append(("%d/%d" % (level, goal['level'])).center(maxitw))
     with _indent(indent):
         for i, d in _zip_longest(icon, desc):
-            puts("{1:{0}}    {2}".format(maxiw, i if i is not None else "",
+            puts("{1:{0}}    {2}".format(maxiw, str(i) if i is not None else "",
                                          d.strip() if d is not None else ""))
 
 

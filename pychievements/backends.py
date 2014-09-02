@@ -101,7 +101,7 @@ class SQLiteAchievementBackend(AchievementBackend):
             c = self.conn.cursor()
             c.execute('select achievement, level from pychievements where tracked_id=? and '
                       'achievement in (%s)' % ','.join('?'*len(achievements.keys())),
-                      [str(tracked_id)] + achievements.keys())
+                      [str(tracked_id)] + list(achievements.keys()))
             rows = c.fetchall()
             for i, _ in enumerate(rows):
                 r.append(achievements[_[0]](current=_[1]))
