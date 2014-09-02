@@ -1,7 +1,24 @@
 Pychievements: The Python Achievments Framework!
 ================================================
 
-|build| |docs|
+|build| |docs| |coverage| |downloads| |license|
+
+.. |coverage| image:: https://coveralls.io/repos/PacketPerception/pychievements/badge.png?branch=master
+    :target: https://coveralls.io/r/PacketPerception/pychievements?branch=master
+
+.. |build| image:: https://travis-ci.org/PacketPerception/pychievements.svg?branch=master
+    :target: https://travis-ci.org/PacketPerception/pychievements
+
+.. |docs| image:: https://readthedocs.org/projects/pychievements/badge/?version=latest
+    :target: http://pychievements.readthedocs.org/en/latest/
+
+.. |downloads| image:: https://pypip.in/download/pychievements/badge.svg
+    :target: https://pypi.python.org/pypi/pychievements/
+    :alt: Downloads
+
+.. |license| image:: https://pypip.in/license/pychievements/badge.svg
+    :target: https://pypi.python.org/pypi/pychievements/
+    :alt: License
 
 **Pychievements** is a framework for creating and tracking achievements within a Python application.
 It includes functions specifically for creating commandline applications, though it is flexible 
@@ -91,13 +108,3 @@ Roadmap
 -------
 - Unittests
 - Documentation
-
-.. |build| image:: https://travis-ci.org/PacketPerception/pychievements.svg?branch=master
-    :alt: Build Status
-    :scale: 100%
-    :target: https://travis-ci.org/PacketPerception/pychievements
-
-.. |docs| image:: https://readthedocs.org/projects/pychievements/badge/?version=latest
-    :alt: Documentation Status
-    :scale: 100%
-    :target: http://pychievements.readthedocs.org/en/latest/
