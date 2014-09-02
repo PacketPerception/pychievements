@@ -37,7 +37,7 @@ class Signal(object):
                 from any sender.
 
             dispatch_uid
-                An identifier used to uniqueley identify a particular instance of a receiver. This
+                An identifier used to uniquely identify a particular instance of a receiver. This
                 will usually be a string, though it may be anything hashable.
 
         """
@@ -65,9 +65,6 @@ class Signal(object):
 
             sender
                 The registered sender to disconnect
-
-            weak
-                The weakref state to disconnect
 
             dispatch_uid
                 the unique identifier of the receiver to disconnect
@@ -167,11 +164,11 @@ def receiver(signal, **kwargs):
     A decorator for connecting receivers to signals. Used by passing in the
     signal (or list of signals) and keyword arguments to connect::
 
-        @receiver(goal_achieved, sender=tracker)
+        @receiver(goal_achieved)
         def signal_receiver(sender, **kwargs):
             ...
 
-        @receiver([goal_achieved, level_increased], sender=MyModel)
+        @receiver([goal_achieved, level_increased], sender=tracker)
         def signals_receiver(sender, **kwargs):
             ...
 

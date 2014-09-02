@@ -214,5 +214,5 @@ class AchievementTracker(object):
         return self._backend.get_tracked_ids()
 
     def remove_id(self, tracked_id):
-        """ Remove all tracked information for tracke_id """
+        """ Remove all tracked information for tracked_id """
         self._backend.remove_id(tracked_id)

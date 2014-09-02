@@ -4,7 +4,7 @@ class Achievement(object):
 
     An achievement primarily consists of 'goals', being levels that can be reached. Instances of
     Achievements are used to track progress, and the current level for individual IDs. For this,
-    an Achievement implements a number of fhunctions to interact with the current level.
+    an Achievement implements a number of functions to interact with the current level.
     Achievements can also have a ``category`` (string) and ``keywords`` (tuple of strings) that can
     be used to filter Achievements.
 
@@ -47,7 +47,7 @@ class Achievement(object):
     to increment can be placed throughout the application.
 
     Evaluate is best used when actions may happen externally, and cannot be tracked using repeated
-    calls to increment. Evaluate will also return the list of achieved goals after it has perfomed
+    calls to increment. Evaluate will also return the list of achieved goals after it has performed
     its evaluation.
 
     An Achievement can be initialized with a ``current`` level, for example when restoring for a
@@ -108,7 +108,7 @@ class Achievement(object):
 
     def evaluate(self, *args, **kwargs):
         """
-        Perfoms a custom evaluation to set the current level of an achievement. Returns a list of
+        Performs a custom evaluation to set the current level of an achievement. Returns a list of
         achieved goals after the level is determined.
         """
         return self.achieved

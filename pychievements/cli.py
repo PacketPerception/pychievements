@@ -10,7 +10,7 @@ except ImportError:
 
 def print_goal(goal, achieved=False, level=None, indent=2):
     """ Print a goals description with its icon. Achieved (True/False) will choose the correct icon
-    from the goal. If a level is sepcified, a tracker line will be added under the icon showing
+    from the goal. If a level is specified, a tracker line will be added under the icon showing
     the current level out of the required level for the goal. If level is > the required level,
     achieved will be set to true.
     """

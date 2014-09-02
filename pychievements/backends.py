@@ -10,9 +10,9 @@ class AchievementBackend(object):
 
     AchievementBackend is the most basic implementation of an AchievementBackend, storing all
     tracked information in memory and never persisting it. All of the functions of an
-    AchievementBackend work to retrieve an ``Achievemnet`` instance for a given ``tracked_id``, and
+    AchievementBackend work to retrieve an ``Achievement`` instance for a given ``tracked_id``, and
     run the appropriate function on it, storing the results. In the least, storing results for a
-    sepcific achievemnt, for a specific ``target_id`` should include the ``target_id``, the
+    specific achievement, for a specific ``target_id`` should include the ``target_id``, the
     ``Achievement`` class name (``Achievement.__name__``), and the current level
     (``Achievement.current``)
 
@@ -66,7 +66,7 @@ class SQLiteAchievementBackend(AchievementBackend):
     Arguments:
 
         dbfile
-            The full path and filename to store the SQLite database
+            The full path and file name to store the SQLite database
 
     To use, create the backend and then use the :py:func:`set_backend` method of the tracker.
 

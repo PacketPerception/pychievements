@@ -21,10 +21,10 @@ Pychievements: The Python Achievments Framework!
     :alt: License
 
 **Pychievements** is a framework for creating and tracking achievements within a Python application.
-It includes functions specifically for creating commandline applications, though it is flexible 
+It includes functions specifically for creating command line applications, though it is flexible 
 enough to be used for any application such as web applications.
 
-See the examples_ to get a good feel for what Pychievements offers. Docuementation can be found RTD:
+See the examples_ to get a good feel for what Pychievements offers. Documentation can be found RTD:
 http://pychievements.readthedocs.org/en/latest/
 
 .. _examples: https://github.com/PacketPerception/pychievements/tree/master/examples
@@ -65,7 +65,7 @@ Increment a level for a user. ::
 Re-evaluating a level for a user based on arguments (requires the evaluate function to be defined 
 or the Achievement). ::
 
-    tracker.evluate(user_id, MyAchievement, some, extra, args)
+    tracker.evaluate(user_id, MyAchievement, some, extra, args)
 
 
 Retrieve achievements. ::
@@ -106,5 +106,5 @@ sure you add yourself to AUTHORS_.
 
 Roadmap
 -------
-- Unittests
-- Documentation
+- More backends
+- More icons
