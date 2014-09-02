@@ -101,9 +101,11 @@ class TrackerTests(unittest.TestCase):
 
     def test_remove_id(self):
         tid = random.choice(TRACKED_IDS)
-        self.tracker.increment(tid, random.choice(ACHIEVEMENTS))
+        for _ in TRACKED_IDS:
+            self.tracker.increment(_, random.choice(ACHIEVEMENTS))
         self.tracker.remove_id(tid)
-        self.assertLess(len(self.tracker.get_tracked_ids()), len(TRACKED_IDS))
+        print(self.tracker.get_tracked_ids())
+        self.assertEqual(len(self.tracker.get_tracked_ids()), len(TRACKED_IDS)-1)
 
 
 class AchievementBackenedTests(unittest.TestCase):
@@ -150,8 +152,10 @@ class SQLiteBackendTests(unittest.TestCase):
 
     def test_remove_id(self):
         tid = random.choice(TRACKED_IDS)
+        for _ in TRACKED_IDS:
+            self.tracker.increment(_, random.choice(ACHIEVEMENTS))
         self.tracker.remove_id(tid)
-        self.assertLess(len(self.tracker.get_tracked_ids()), len(TRACKED_IDS))
+        self.assertEqual(len(self.tracker.get_tracked_ids()), len(TRACKED_IDS)-1)
 
 
 @receiver([goal_achieved, level_increased, highest_level_achieved])

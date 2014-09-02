@@ -1,7 +1,11 @@
 from . import tracker as _defaulttracker
 from .achievements import Achievement
-from itertools import izip_longest as _izip_longest
 from inspect import isclass as _isclass
+
+try:
+    from itertools import zip_longest as _zip_longest
+except ImportError:
+    from itertools import izip_longest as _zip_longest
 
 
 def print_goal(goal, achieved=False, level=None, indent=2):
@@ -26,7 +30,7 @@ def print_goal(goal, achieved=False, level=None, indent=2):
         maxitw = max([len(_) for _ in icon])
         icon.append(("%d/%d" % (level, goal['level'])).center(maxitw))
     with _indent(indent):
-        for i, d in _izip_longest(icon, desc):
+        for i, d in _zip_longest(icon, desc):
             puts("{1:{0}}    {2}".format(maxiw, i if i is not None else "",
                                          d.strip() if d is not None else ""))
 

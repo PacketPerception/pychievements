@@ -1,7 +1,7 @@
 Pychievements: The Python Achievments Framework!
 ================================================
 
-|docs|
+|build| |docs|
 
 **Pychievements** is a framework for creating and tracking achievements within a Python application.
 It includes functions specifically for creating commandline applications, though it is flexible 
@@ -92,6 +92,10 @@ Roadmap
 - Unittests
 - Documentation
 
+.. |build| image:: https://travis-ci.org/PacketPerception/pychievements.svg?branch=master
+    :alt: Build Status
+    :scale: 100%
+    :target: https://travis-ci.org/PacketPerception/pychievements
 
 .. |docs| image:: https://readthedocs.org/projects/pychievements/badge/?version=latest
     :alt: Documentation Status
