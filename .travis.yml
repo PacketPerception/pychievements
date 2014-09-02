@@ -7,4 +7,7 @@ python:
     - "2.6"
 install:
     - "pip install -r tests/test_requirements.txt"
-script: nosetests
+script:
+    - nosetests --with-coverage --cover-package=pychievements
+after_success:
+    - coveralls

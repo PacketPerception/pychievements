@@ -1,4 +1,5 @@
 # These requirements are for running pychievements tests
 clint
 coverage
+python-coveralls
 nose
