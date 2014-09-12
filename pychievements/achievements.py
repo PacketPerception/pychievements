@@ -98,13 +98,13 @@ class Achievement(object):
         """
         return [_ for _ in self.goals if self._current < _['level']]
 
-    def increment(self, *args, **kwargs):
+    def increment(self, amount=1, *args, **kwargs):
         """
         Increases the current level. Achievements can redefine this function to take options to
         increase the level based on given arguments. By default, this will simply increment the
-        current count by 1.
+        current count by ``amount`` (which defaults to 1).
         """
-        self._current = self._current + 1
+        self._current = self._current + amount
 
     def evaluate(self, *args, **kwargs):
         """
