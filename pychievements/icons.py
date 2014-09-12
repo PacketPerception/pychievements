@@ -75,3 +75,86 @@ star = Icon(colored.white("""           ..
    D88.          .888
   .D.              .D.
 """))
+
+
+# from http://www.chris.com/ascii/index.php?art=animals/birds%20(land)
+_ROADRUNNER_STR = r"""
+   .==,_
+  .===,_`\
+.====,_ ` \      .====,__
+  .==-,`~. \           `:`.__,
+    `~~=-.  \           /^^^
+       `~~=. \         /
+          `~. \       /
+            ~. \____./
+              `.=====)
+           ___.--~~~--.__
+ ___\.--~~~              ~~~---.._|/
+ ~~~"                             /
+                                  '
+"""
+roadrunner = Icon(colored.white(_ROADRUNNER_STR), colored.yellow(_ROADRUNNER_STR))
+
+_EAGLE_STR = r"""
+            ___
+         ,-'   >---.        ,---.
+        /  ,o)'     `.     /     `.
+       '|    (   ,_   )   |        `.
+     ,--|    -.,'  `./    ;        `.
+    /   |      `.         :   .      `
+   /    |:.      `-       ,    \    :.\\
+  |   ,-|'        \-.___,'     :\   ;::\\
+  |, ::'\   ,      `.        ,.::\   :(-
+  |: |:; \,'\  ).   / .:..  ,:::::\   `\\
+  |  |,:  `  `/  `-/ ::::::::::::::\    ;
+  |   |:             ::::::::::::::.\   |
+  \   |:.,           ::::::::::   ` |;  |
+   \  `.:'       ::.,::::::: `:  \  ||  |
+    \   \     . ,:::::::,:::  . ( `-'|  |
+     `.  \     ::::,`':(::' ` |\ \   :  |
+       \  :-:. `::      \ `   | \ \   \ |
+        `'  |:' `'  /`.  `. \ :  `'    \|
+           /   \    \ `._/ `'`-`        |
+       __ / \, ,\   _\\  `.
+     _/ ,\- (`'  `-',-','-,"-.
+    /,-(,- \_\     (-'(,---.:.)
+"""
+eagle = Icon(colored.white(_EAGLE_STR), colored.yellow(_EAGLE_STR))
+
+
+_BEE_STR = r"""
+
+                             ...vvvv)))))).
+  /~~\               ,,,c(((((((((((((((((/
+ /~~c \.         .vv)))))))))))))))))))\``
+     G_G__   ,,(((KKKK//////////////'
+   ,Z~__ '@,gW@@AKXX~MW,gmmmz==m_.
+  iP,dW@!,A@@@@@@@@@@@@@@@A` ,W@@A\c
+  ]b_.__zf !P~@@@@@*P~b.~+=m@@@*~ g@Ws.
+     ~`    ,2W2m. '\[ ['~~c'M7 _gW@@A`'s
+       v=XX)====Y-  [ [    \c/*@@@*~ g@@i
+      /v~           !.!.     '\c7+sg@@@@@s.
+     //              'c'c       '\c7*X7~~~~
+    ]/                 ~=Xm_       '~=(Gm_.
+"""
+bee = Icon(colored.white(_BEE_STR), colored.yellow(_BEE_STR))
+
+_EARTH_STR = r"""
+                 ,,,,,,
+             o#'9MMHb':'-,o,
+          .oH":HH$' "' ' -*R&o,
+         dMMM*""'`'      .oM"HM?.
+       ,MMM'          "HLbd< ?&H\\
+      .:MH ."\          ` MM  MM&b
+     . "*H    -        &MMMMMMMMMH:
+     .    dboo        MMMMMMMMMMMM.
+     .   dMMMMMMb      *MMMMMMMMMP.
+     .    MMMMMMMP        *MMMMMP .
+          `#MMMMM           MM6P ,
+      '    `MMMP"           HM*`,
+       '    :MM             .- ,
+        '.   `#?..  .       ..'
+           -.   .         .-
+             ''-.oo,oo.-''
+"""
+earth = Icon(colored.white(_EARTH_STR), colored.yellow(_EARTH_STR))
