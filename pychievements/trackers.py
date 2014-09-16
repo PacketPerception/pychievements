@@ -136,7 +136,7 @@ class AchievementTracker(object):
             return new_goals
         return False
 
-    def increment(self, tracked_id, achievement, *args, **kwargs):
+    def increment(self, tracked_id, achievement, amount=1, *args, **kwargs):
         """
         Increments an achievement for a given ``tracked_id``. Achievement can be an ``Achievement``
         class or a string of the name of an achievement class that has been registered with this
@@ -152,7 +152,7 @@ class AchievementTracker(object):
         achievement = self.achievement_for_id(tracked_id, achievement)
         cur_level = achievement.current[0]
         achieved = achievement.achieved[:]
-        achievement.increment(*args, **kwargs)
+        achievement.increment(amount, *args, **kwargs)
         self._backend.set_level_for_id(tracked_id, achievement.__class__, achievement.current[0])
         return self._check_signals(tracked_id, achievement, cur_level, achieved)
 
