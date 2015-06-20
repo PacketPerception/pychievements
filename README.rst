@@ -3,10 +3,10 @@ Pychievements: The Python Achievments Framework!
 
 |build| |docs| |coverage| |downloads| |license|
 
-.. |coverage| image:: https://coveralls.io/repos/PacketPerception/pychievements/badge.png?branch=master
+.. |coverage| image:: https://img.shields.io/coveralls/PacketPerception/pychievements/master.svg
     :target: https://coveralls.io/r/PacketPerception/pychievements?branch=master
 
-.. |build| image:: https://travis-ci.org/PacketPerception/pychievements.svg?branch=master
+.. |build| image:: https://img.shields.io/travis/PacketPerception/pychievements/master.svg
     :target: https://travis-ci.org/PacketPerception/pychievements
 
 .. |docs| image:: https://readthedocs.org/projects/pychievements/badge/?version=latest
@@ -15,7 +15,7 @@ Pychievements: The Python Achievments Framework!
 .. |downloads| image:: https://img.shields.io/pypi/dm/pychievements.svg
     :target: https://pypi.python.org/pypi/pychievements/
 
-.. |license| image:: https://img.shields.io/github/license/PacketPerception/pychievements.svg
+.. |license| image:: https://img.shields.io/pypi/l/pychievements.svg
     :target: https://pypi.python.org/pypi/pychievements/
 
 **Pychievements** is a framework for creating and tracking achievements within a Python application.
