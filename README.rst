@@ -12,13 +12,11 @@ Pychievements: The Python Achievments Framework!
 .. |docs| image:: https://readthedocs.org/projects/pychievements/badge/?version=latest
     :target: http://pychievements.readthedocs.org/en/latest/
 
-.. |downloads| image:: https://pypip.in/download/pychievements/badge.svg
+.. |downloads| image:: https://img.shields.io/pypi/dm/pychievements.svg
     :target: https://pypi.python.org/pypi/pychievements/
-    :alt: Downloads
 
-.. |license| image:: https://pypip.in/license/pychievements/badge.svg
+.. |license| image:: https://img.shields.io/github/license/PacketPerception/pychievements.svg
     :target: https://pypi.python.org/pypi/pychievements/
-    :alt: License
 
 **Pychievements** is a framework for creating and tracking achievements within a Python application.
 It includes functions specifically for creating command line applications, though it is flexible 
