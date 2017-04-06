@@ -1,4 +1,4 @@
-Pychievements: The Python Achievments Framework!
+Pychievements: The Python Achievements Framework!
 ================================================
 
 |build| |docs| |coverage| |downloads| |license|
