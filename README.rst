@@ -30,13 +30,13 @@ http://pychievements.readthedocs.org/en/latest/
 
 Features:
 ---------
- - Create Achievements with any number of "goals" (based on levels) that can be reached
- - Flexible design makes it easy to customize the way levels are tracked
- - Easy to add new achievements later
- - Pluggable backend for storing tracked information in different formats to different locations
- - Achievements can be filtered by category or keywords
- - Easily specify "Icons" for individual goals within an achievement for dual states (achieved and
-   unachieved)
+- Create Achievements with any number of "goals" (based on levels) that can be reached
+- Flexible design makes it easy to customize the way levels are tracked
+- Easy to add new achievements later
+- Pluggable backend for storing tracked information in different formats to different locations
+- Achievements can be filtered by category or keywords
+- Easily specify "Icons" for individual goals within an achievement for dual states (achieved and
+  unachieved)
 
 
 Example
