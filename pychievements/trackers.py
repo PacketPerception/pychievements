@@ -12,6 +12,16 @@ class NotRegistered(Exception):
     pass
 
 
+def median(lst):
+    n = len(lst)
+    if n < 1:
+        return None
+    if n % 2 == 1:
+        return sorted(lst)[n // 2]
+    else:
+        return sum(sorted(lst)[n // 2-1:n // 2 + 1])/ 2.0
+
+
 class AchievementTracker(object):
     """
     AchievementTracker tracks achievements and current levels for ``tracked_id`` using a configured
@@ -77,7 +87,7 @@ class AchievementTracker(object):
         """
         return achievement in self._registry
 
-    def achievements(self, category=None, keywords=[]):
+    def achievements(self, category=None, keywords=None):
         """
         Returns all registered achievements.
 
@@ -88,9 +98,10 @@ class AchievementTracker(object):
 
             keywords
                 Filters returned achievements by keywords. Returned achievements will match all
-                given keywords
+                given keywords. This will be [] if not provided.
         """
         achievements = []
+        keywords = keywords if keywords is not None else []
         for achievement in self._registry:
             if category is None or achievement.category == category:
                 if not keywords or all([_ in achievement.keywords for _ in keywords]):
@@ -117,9 +128,10 @@ class AchievementTracker(object):
             return self._backend.achievement_for_id(tracked_id, a[0])
         raise NotRegistered('The achievement %s is not registered with this tracker' % achievement)
 
-    def achievements_for_id(self, tracked_id, category=None, keywords=[]):
+    def achievements_for_id(self, tracked_id, category=None, keywords=None):
         """ Returns all of the achievements for tracked_id that match the given category and
-        keywords """
+        keywords. keywords will be [] if not provided."""
+        keywords = keywords if keywords is not None else []
         return self._backend.achievements_for_id(tracked_id, self.achievements(category, keywords))
 
     def _check_signals(self, tracked_id, achievement, old_level, old_achieved):
@@ -216,3 +228,39 @@ class AchievementTracker(object):
     def remove_id(self, tracked_id):
         """ Remove all tracked information for tracked_id """
         self._backend.remove_id(tracked_id)
+
+    def compare_stats(self, tracked_ids, achievement):
+        """
+        Fetches an achievement's statistics for each ID provided, and compares them.
+
+        This will return a dictionary that looks like the following:
+        {
+            "mean": Number with the average current level. This will be rounded into a goal index.
+            "median": The median of all the current levels.
+            "max": The highest level among the IDs.
+            "min": The lowest level among the IDs.
+        }
+        """
+        stats = {
+            "mean": 0,
+            "median": [],
+            "max": [],
+            "min": []
+        }
+
+        for tid in tracked_ids:
+            personal_achievement = self._backend.achievement_for_id(tid, achievement)
+            stats["mean"] += personal_achievement.current[0]
+            for stat in ["median", "max", "min"]:
+                stats[stat].append(personal_achievement.current[0])
+
+        stats["mean"] /= len(tracked_ids)
+        stats["median"] = median(stats["median"])
+        stats["max"] = max(stats["max"])
+        stats["min"] = min(stats["min"])
+
+        return stats
+
+    def compare_global_stats(self, achievement):
+        """ Shorthand for tracker.compare_stats(tracker.get_tracked_ids(), ``achievement``) """
+        return self.compare_stats(self.get_tracked_ids(), achievement)
