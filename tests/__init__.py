@@ -30,6 +30,24 @@ class TrackerTests(unittest.TestCase):
         self.tracker = AchievementTracker()
         self.tracker.register(ACHIEVEMENTS)
 
+        self.fixed_tracker = AchievementTracker()
+
+        class FixedAchievement(Achievement):
+            name = "Fixed"
+            category = "test"
+            keywords = "unittest"
+            goals = (
+                {'level': 10, 'name': 'Level 1', 'icon': icons.star, 'description': 'Level One'},
+                {'level': 20, 'name': 'Level 2', 'icon': icons.star, 'description': 'Level Two'},
+                {'level': 30, 'name': 'Level 3', 'icon': icons.star, 'description': 'Level Three'},
+            )
+
+        self.fixed_achievement = FixedAchievement
+        self.fixed_tracker.register(FixedAchievement)
+        people = {"Greg": 10, "Cindy": 20, "Megan": 30}
+        for name, value in people.items():
+            self.fixed_tracker.increment(name, FixedAchievement, value)
+
     def test_bad_backend(self):
         self.assertRaises(ValueError, self.tracker.set_backend, AchievementTracker)
 
@@ -107,6 +125,20 @@ class TrackerTests(unittest.TestCase):
         print(self.tracker.get_tracked_ids())
         self.assertEqual(len(self.tracker.get_tracked_ids()), len(TRACKED_IDS)-1)
 
+    def test_compare_stats(self):
+        results = self.fixed_tracker.compare_stats(["Greg", "Megan"], self.fixed_achievement)
+        self.assertEqual(results["mean"], 20)
+        self.assertEqual(results["median"], 20)
+        self.assertEqual(results["max"], 30)
+        self.assertEqual(results["min"], 10)
+
+    def test_compare_global_stats(self):
+        results = self.fixed_tracker.compare_global_stats(self.fixed_achievement)
+        self.assertEqual(results["mean"], 20)
+        self.assertEqual(results["median"], 20)
+        self.assertEqual(results["max"], 30)
+        self.assertEqual(results["min"], 10)
+
 
 class AchievementBackenedTests(unittest.TestCase):
     # only tests things that haven't been hit in TrackerTests
@@ -128,7 +160,7 @@ class SQLiteBackendTests(unittest.TestCase):
         self.tracker.register(ACHIEVEMENTS)
 
     def tearDown(self):
-        os.remove(self.dbfile.name)
+        os.remove(self.dbfile.name)  # Fails on windows. This should be looked into later.
 
     def test_increment(self):
         tid = random.choice(TRACKED_IDS)
