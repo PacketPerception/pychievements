@@ -30,7 +30,7 @@ Pychievements has a number of modules that you'll need to be at least familiar w
         track all registered achievements for specific *tracked_ids*.
 
     Achievement
-        Base Achievment class.
+        Base Achievement class.
 
     icons.Icon
         Base Icon class. Icons are used to know what to display for a given goal within an
@@ -38,12 +38,12 @@ Pychievements has a number of modules that you'll need to be at least familiar w
 
     backends.AchievementBackend
         Pychievements have pluggable backends for storing tracked achievement data. The default
-        ``AchievementBackend`` simply keeps everyting in memory, meaning it will be lost when the
+        ``AchievementBackend`` simply keeps everything in memory, meaning it will be lost when the
         application is closed. The backend the tracker is using can be updated with the
         ``set_backend`` method. 
 
     signals
-        You can register functions as callbacks that can *recieve* Pychievement signals. Signals can
+        You can register functions as callbacks that can *receive* Pychievement signals. Signals can
         be generated when a level is changed, when a new goal is reached, or when all goals have
         been achieved for a given achievement.
 
@@ -73,7 +73,7 @@ An example Achievement class: ::
         )
 
 An achievements current level for an id can tracked with either the ``increment`` or ``evaluate``
-functions, which the achievment can override to provide custom level manipulation.
+functions, which the achievement can override to provide custom level manipulation.
 
 
 The Tracker
@@ -96,7 +96,7 @@ The tracker works with the configured backend to store and retrieve all of the t
 Icons
 ^^^^^
 
-Icons are simple classes that provide the "icon" (or what is displayed) for an achievment goal. It
+Icons are simple classes that provide the "icon" (or what is displayed) for an achievement goal. It
 must define what to display for when the goal has been achieved (``achieved``) or not
 (``unachieved``)
 
