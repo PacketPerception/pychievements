@@ -30,10 +30,10 @@ class Signal(object):
         Arguments:
 
             receiver
-                A function or an instance method which is to recieve signals.
+                A function or an instance method which is to receive signals.
 
             sender
-                The sender to which the receiver should respond. Must be None to recieve events
+                The sender to which the receiver should respond. Must be None to receive events
                 from any sender.
 
             dispatch_uid
